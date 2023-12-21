@@ -2206,6 +2206,7 @@ pub trait NSView: Sized {
     unsafe fn superview(self) -> id;
     unsafe fn removeFromSuperview(self);
     unsafe fn setAutoresizingMask_(self, autoresizingMask: NSAutoresizingMaskOptions);
+    unsafe fn setCanDrawConcurrently(self, canDrawConcurrently: BOOL);
 
     unsafe fn wantsLayer(self) -> BOOL;
     unsafe fn setWantsLayer(self, wantsLayer: BOOL);
@@ -2272,6 +2273,10 @@ impl NSView for id {
 
     unsafe fn setAutoresizingMask_(self, autoresizingMask: NSAutoresizingMaskOptions) {
         msg_send![self, setAutoresizingMask: autoresizingMask]
+    }
+
+    unsafe fn setCanDrawConcurrently(self, canDrawConcurrently: BOOL) {
+        msg_send![self, setCanDrawConcurrently: canDrawConcurrently]
     }
 
     unsafe fn wantsLayer(self) -> BOOL {
